@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="{% static 'css/user_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user_page2.css' %}" rel="stylesheet">
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="child" class="container child-class">
+        <h1>hello</h1>
+        <div class="child-cancel">
+            <form action="/userpage" method="post" id="more-details-form">
+                {% csrf_token %}
+                <button><i class="fa fa-times" aria-hidden="true" onclick="child()"></i></button>
+            </form>
+        </div>
+        <!-- <div class="child-cancel">
+            <i class="fa fa-times" aria-hidden="true" onclick="child()"></i>
+        </div> -->
+        <b>Full name exp</b> : {{alld.full_name}}<br>
+        <b>Email</b> : {{alld.email}}<br>
+        <b>Branch</b> : {{alld.branch}}<br>
+        <b>Passout year</b> : {{alld.passout_year}}<br>
+        <b>Gender</b> : {{alld.gender}}<br>
+        <b>Permanent address</b> : {{alld.permanent_address}}<br>
+        <b>Home town</b> : {{alld.home_town}}<br>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<div id="adminProfile">
+    <h2 class="hading">Admin Profile</h2><br>
+    <form class="container" id="" method="post" action="update_profile">
+        {% csrf_token %}
+        <div class="col-md-10">
+            <div class="form-group">
+                <label class="labelInput">First Name</label>
+                <input type="text" class="form-control" placeholder="First Name" name="adminFirstName"
+                    value="{{admin.admin_first_name}}" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" name="adminLastName"
+                    value="{{admin.admin_last_name}}" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Email Id</label>
+                <input type="email" class="form-control" placeholder="Email Id" name="adminEmail"
+                    value="{{admin.admin_email}}" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Contact no.</label>
+                <input type="number" class="form-control" placeholder="Contact no." name="adminNo"
+                    value="{{admin.admin_number}}" required>
+            </div><br>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

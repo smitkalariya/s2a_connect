@@ -1,0 +1,45 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<form class="container" id="" method="post" action="admin_add_alumni">
+    {% csrf_token %}
+    <div id="addAdmin">
+        <h2 class="hading al-hading">Add Alumni</h2><br>
+        <div class="col-md-10">
+            <div class="form-group">
+                <label class="labelInput">First Name</label>
+                <input type="text" class="form-control" placeholder="First Name" name="addFirst_name" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" name="addLast_name" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Collage id</label>
+                <input type="text" class="form-control" placeholder="Collage id with prefix 'AL'" name="addCollage_id" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Email Id</label>
+                <input type="email" class="form-control" placeholder="Email Id" name="addEmail" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="addPassword" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <input type="checkbox" class="check-box" name="addSem"><span>6 <sup>th</sup> or below
+                    semester</span>
+            </div><br>
+
+            <!-- <a href="/adminprofile">Submit</a> -->
+            <button type="submit" class="btn btn-primary next-btn">Add</button>
+        </div>
+    </div>
+
+    {% endblock %}

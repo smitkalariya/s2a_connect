@@ -1,0 +1,345 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 78px;
+    background: #11101d;
+    padding: 6px 14px;
+    transition: all 0.5s ease;
+}
+.sidebar.active{
+    width: 240px;
+}
+.sidebar .logo_content .logo{
+  color: #fff;
+  display: flex;
+  height: 50px;
+  width: 100%;   
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px;
+}
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+.sidebar #btn{
+    position: absolute;
+    color: #fff;
+    left: 55%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+
+}
+.sidebar.active #btn{
+    left: 90%;
+}
+.sidebar ul{
+    margin-top: 20px;
+}
+.sidebar ul li, .sidebar .profile{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+}
+.sidebar ul li .tooltip{
+    position: absolute; 
+    left: 122px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    line-height: 35px;
+    text-align: center;
+    box-sizing: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+.sidebar ul li:hover .tooltip{
+    transition: all 0.5s ease;
+    opacity: 1;
+    top: 50%; 
+}
+.sidebar ul li input{
+   position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    background: #1d1b31;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+}
+.sidebar ul li .bx-search{
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 22px;
+    transition: all 0.5s ease;
+}
+.sidebar ul li .bx-search:hover{
+  background: #fff;
+  color: #1d1b31;
+}
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+.sidebar ul li a:hover{
+    border: 2px solid #fff;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+.sidebar ul li a i{  
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center ;
+}
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/*-------------------log out button------------------*/
+.sidebar .profile{
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: -25px;
+    width: 78px;
+    background: #1d1b31;
+    padding: 10px 6px;
+    height: 60px;
+    transition: all 0.5s ease;
+}
+.sidebar.active .profile{
+    left: -15px;
+    width: 240px;
+    background: #1d1b31;
+    padding: 10px 6px;
+    height: 60px;
+    transition: all 0.5s ease;
+}
+.profile #log_out{
+    position: absolute;
+    bottom: 5px;
+    min-width: 50px;
+    margin-left: 12px;
+    margin-top:200px;
+}
+.sidebar #logout-sidebar{
+    margin-top:180px;
+}
+.sidebar .profile .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .profile .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar .profile i{  
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center ;
+}
+.sidebar .profile a:hover{
+    color: #11101d;
+    background: #fff;
+}
+.sidebar .profile a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+.sidebar div .profile .tooltip{
+    position: absolute; 
+    left: 122px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    line-height: 35px;
+    text-align: center;
+    box-sizing: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+.sidebar.active div .profile .profile{
+    display: none;
+}
+.sidebar div .profile:hover .tooltip{
+    transition: all 0.5s ease;
+    opacity: 1;
+    top: 50%; 
+}
+.home_content{
+    position: absolute;
+    height: 100vh;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
+    overflow: scroll;
+    background-color: #e4e9f7;
+}
+.home_content .text{
+    font-size: 20px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin: 12px;
+}
+
+.sidebar.active ~ .home_content{
+    width: calc(100% - 240px);
+    left: 240px;
+}
+
+/*------------------------------------------*/
+#constant{
+    height: 20px;
+    width: 20px;
+    margin-left: 15px;
+}
+
+.coach-icon{
+    margin-left:  30px;
+}
+
+.search-sidebar, #logout-sidebar, #deleteaccount-sidebar{
+    margin-top: 10px;
+    margin-bottom: 3px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center ;
+}
+
+.btn-primary{
+    background-color:blue;
+}
+.fa-home{
+    width:100px;
+    height:100px;
+}
+
+/*-----------------------------user div-------------------------------------*/
+
+.al-project-grid{
+    grid-gap: 30px 50px;
+    width: calc(100% + 30px);
+    left: -15px;
+}
+.al-details
+{
+   padding: 20px 20px 20px 20px;
+   border-radius: 10px;
+   box-shadow: 10px 10px 0px 0px rgb(239 112 0 / 10%),20px 16px 50px -20px rgb(32, 162, 243);
+   transition: all .35s cubic-bezier(.14,.51,0,1);
+   width: calc(100% / 3);
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-bottom: 33px;
+}
+
+/*-------------------------expand div---------------------*/
+.al-details .expand form button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: black;
+    border: none;
+    text-decoration: none;
+}
+
+#child{
+    width: 800px; 
+    height: auto;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0px 0px rgb(239 112 0 / 10%),20px 16px 50px -20px rgb(32, 162, 243);
+}
+
+.child-cancel{
+    position: relative;
+    top: -15px;
+    left: 760px;
+    cursor: pointer;
+    color: black;
+    width: 15px;
+}
+#applied-clg-body{
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+}
+
+#search-alumni-btn{
+    margin-top: -100px;
+}

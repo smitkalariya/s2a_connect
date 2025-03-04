@@ -1,0 +1,96 @@
+body{
+   margin:0;
+   padding:0;
+}
+.hero{
+	height:100%;
+	width:100%;
+	background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('/static/image/home1.jpg');
+	background-position: center;
+	background-size: cover;
+	position:absolute;
+}
+.formbox{
+	width:380px;
+	height:470px;
+	position:absolute;
+	margin-left:500px;
+	
+	background:#ffffff;
+	padding:5px;
+	overflow:hidden;
+}
+.button-box{
+	width:200px;
+	margin:35px auto;
+	position:relative;
+	
+	border-radius:30px;
+}
+.toggle-btn{
+	padding:10px;
+	cursor:pointer;
+	background:transparent;
+	border:0;
+	outline:none;
+	position:relative; 
+
+}
+#btn{
+	top:0;
+	left:0;
+	position:absolute;
+	background: linear-gradient(to right, #ff105f,#ffad06);
+	transition:.5s;
+}
+
+.input-group{
+	top:100px;
+	position: absolute;
+	width: 280px;
+	transition: .5s;
+}
+.input-field{
+	width:100%;
+	padding:10px;
+	margin:5px;
+	border-top:0;
+	border-right:0;
+	border-left:0;
+	border-bottom:1px solid #999;
+	background:transparent;
+}
+.submit-btn{
+	width: 50%;
+    color: #000;
+	padding: 10px 30px;
+	cursor: pointer;
+	display:block;
+	margin-bottom: 200px;
+	background-color:  #76CCF1;
+	outline:none;
+	border:0;
+	border-radius:30px;
+}
+
+span{
+	color:#777;
+	font-size:12px;
+	font-size: 15px;
+}
+#register{
+	left:50px;
+}
+h5{
+	text-align: right;
+}
+h5 a{
+	text-decoration:none;
+}
+.fa{
+	text-decoration:none;
+	margin-left:890px;
+	margin-top:75px;
+	
+	color:#E4E7DD;
+  }

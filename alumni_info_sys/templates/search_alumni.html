@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="{% static 'css/user_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user_page2.css' %}" rel="stylesheet">
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class="fa fa-graduation-cap"></i>
+                <div class="logo_name">s2a Connect</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li onclick="home()" class="search-sidebar">
+                <a href="all_details" class="search-text">
+                    <i class='bx bxs-home'></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li onclick="search()" class="search-sidebar">
+                <a href="search_alumni" class="search-text" style="background-color: #fff; color: #000;">
+                    <i class="fa fa-search"></i>
+                    <span class="links_name">Search</span>
+                </a>
+                <span class="tooltip">Search</span>
+            </li>
+
+            <li onclick="logout()" id="logout-sidebar" style="margin-top: 460px;">
+                <a href="logout_student" id="logout-text">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+            <li onclick="deleteaccount()" id="deleteaccount-sidebar">
+                <a href="delete_account_student" id="deleteaccount-text">
+                    <i class='bx bxs-user-x'></i>
+                    <span class="links_name">Delete Account</span>
+                </a>
+                <span class="tooltip">Delete Account</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="home_content">
+        <div class="text">
+            <div id="div1">
+                <form class="container" id="search" action="search" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-10">
+                        <label for="exampleInputEmail1"><h2>Search</h2></label>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Country</label>
+                                    <input type="text" class="form-control" id="search_country" placeholder="Country name"
+                                        name="search_country">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Branch</label>
+                                    <input type="text" class="form-control" id="search_branch" placeholder="Branch name"
+                                        name="search_branch">
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Passout Year</label>
+                                    <input type="number" class="form-control" id="search_passoutyear"
+                                        placeholder="Passout Year" name="passout_year">
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Collage</label>
+                                    <input type="text" class="form-control" id="search_collage" placeholder="collage"
+                                        name="collage">
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>&nbsp;</label><br>
+                                    <button type="submit" class="btn btn-primary" id="search-alumni-btn" onclick="search()"
+                                        style="margin-top: -60px;">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+        </div>
+    </div><br><br><br><br><br><br><br><br><br><br>
+    <div class="container c1" id="alumni-details search-alu">
+    
+        <div id="details" class="row al-project-grid">
+            {% for var in all %}
+            <div class="al-details col-xl-5" id="small-div">
+                <div class="expand">
+                    {% with total=forloop.counter %}
+    
+                    <form action="/more_details/{{var.collage_id_id}}" method="post" id="more-details-form">
+                        {% csrf_token %}
+                        <button id="md{{total}}"><i class="fa fa-arrows-alt" aria-hidden="true"
+                                id="parent"></i></button>
+                    </form>
+                </div>
+    
+                {% if var.full_name %}
+                <b>Full name</b> : {{var.full_name}}<br>
+                {% else %}
+                <b>Full name</b> : None<br>
+                {% endif %}
+    
+                {% if var.email %}
+                <b>Email</b> : {{var.email}}<br>
+                {% else %}
+                <b>Email</b> : None<br>
+                {% endif %}
+    
+                {% if var.branch %}
+                <b>Branch</b> : {{var.branch}}<br>
+                {% else %}
+                <b>Branch</b> : None<br>
+                {% endif %}
+    
+                {% if var.collage_country %}
+                <b>Country</b> : {{var.collage_country}}<br>
+                {% else %}
+                <b>Country</b> : None<br>
+                {% endif %}
+    
+                {% if var.passout_year %}
+                <b>Passout year</b> : {{var.passout_year}}<br>
+                {% else %}
+                <b>Passout year</b> : None<br>
+                {% endif %}
+    
+                {% if var.gender %}
+                <b>Gender</b> : {{var.gender}}<br>
+                {% else %}
+                <b>Gender</b> : None<br>
+                {% endif %}
+    
+                {% if var.home_town %}
+                <b>Home town</b> : {{var.home_town}}<br>
+                {% else %}
+                <b>Home town</b> : None<br>
+                {% endif %}
+    
+            </div>
+            {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script>
+        function search() {
+            document.getElementById("search-alu").style.display = "block";
+        }
+    </script>
+
+    <script>
+        var pro, edu, coa, con, res, fli;
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+
+</html>

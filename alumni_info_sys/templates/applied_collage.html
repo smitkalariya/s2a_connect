@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Dashboard</title>
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!---------------------------css------------------------------->
+    <link href="{% static 'css/alumni_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page3.css' %}" rel="stylesheet">
+
+
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class="fa fa-graduation-cap"></i>
+                <div class="logo_name">s2a Connect</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li onclick="profile()" id="profile-sidebar">
+                <a href="profile" id="profile-text" class="prolink">
+                    <i class="fa fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li onclick="education()" id="education-sidebar">
+                <a href="education" id="education-text">
+                    <i class="fa fa-university"></i>
+                    <span class="links_name">Education</span>
+                </a>
+                <span class="tooltip">Education</span>
+            </li>
+
+            <li onclick="appliedClg()" id="appliedClg-sidebar">
+                <a href="appliedClg" id="appliedClg-text" style="background-color: #fff; color: #000;">
+                    <i class='bx bxs-school'></i>
+                    <span class="links_name">Applied Collage</span>
+                </a>
+                <span class="tooltip">Applied Collage</span>
+            </li>
+
+            <li onclick="coaching()" id="coaching-sidebar">
+                <a href="coaching" id="coaching-text">
+                    <i class='bx bxs-book-open'></i>
+                    <span class="links_name">Coaching</span>
+                </a>
+                <span class="tooltip">Coaching</span>
+            </li>
+            <li onclick="consultancy()" id="consultancy-sidebar">
+                <a href="consultancy" id="consultancy-text">
+                    <i class="fa fa-comments"></i>
+                    <span class="links_name">Consultancy</span>
+                </a>
+                <span class="tooltip">Consultancy</span>
+            </li>
+            <li onclick="residencial()" id="residencial-sidebar">
+                <a href="residencial" id="residencial-text">
+                    <i class="fa fa-home"></i>
+                    <span class="links_name">Residential</span>
+                </a>
+                <span class="tooltip">Residential</span>
+            </li>
+            <li onclick="flight()" id="flight-sidebar">
+                <a href="flight" id="flight-text">
+                    <i class="bx bxs-plane-take-off icon"></i>
+                    <span class="links_name">Flight</span>
+                </a>
+                <span class="tooltip">Flight</span>
+            </li>
+
+            <li onclick="logout()" id="logout-sidebar" style="margin-top: 200px;">
+                <a href="logout_alumni" id="logout-text">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="home_content">
+        <div class="text">
+            <form class="container" id="appliedClg" method="post" action="appliedClg_form">
+                {% csrf_token %}
+                <div id="aap_clg_home_content">
+                    <div id="country1" class="aap_clg_home_content">
+                        <div class="form-group col-md-10">
+                            <label for="exampleInputEmail1" id="c1label1">Country Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Country Name" name="country1" value="{{appClg.country1}}">
+                            <input type="button" value="Add Collage" id="c1-add-country" onclick="c1AddCountry()">
+                        </div>
+                        <!----------------------------country1 clg1 start------------------------------------>
+                        <div class="col-md-10" id="c1div1" class="add-clg">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Collage Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Collage Name" name="c1_clg1"
+                                    value="{{appClg.c1_clg1}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="State Name" name="c1_sn1"
+                                    value="{{appClg.c1_state1}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="City Name" name="c1_c1"
+                                    value="{{appClg.c1_city1}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Application Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Application Fees in ₹" name="c1_af1"
+                                            value="{{appClg.c1_appfees1}}" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Course Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Course Fees in ₹" name="c1_cf1"
+                                            value="{{appClg.c1_coursefees1}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Course Name</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Course Name" name="c1_cn1" value="{{appClg.c1_course1}}">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">GRE Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="GRE score" name="c1_gre1" value="{{appClg.c1_gre1}}" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">TOEFL Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="TOEFL score" name="c1_toefl1" value="{{appClg.c1_toefl1}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">IELTS Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="IELTS score" name="c1_ielts1" value="{{appClg.c1_ielts1}}">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <input type="button" value="Add Collage" id="c1-add-clg1" onclick="c1AddClg1()">
+                        </div>
+                        <!----------------------------country1 clg1 end------------------------------------>
+
+                        <!----------------------------country1 clg2 start------------------------------------>
+                        <div class="col-md-10" id="c1div2" class="add-clg">
+                            <hr>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Collage Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Collage Name" name="c1_clg2"
+                                    value="{{appClg.c1_clg2}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="State Name" name="c1_sn2"
+                                    value="{{appClg.c1_state2}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="City Name" name="c1_c2"
+                                    value="{{appClg.c1_city2}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Application Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Application Fees in ₹" name="c1_af2"
+                                            value="{{appClg.c1_appfees2}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Course Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Course Fees in ₹" name="c1_cf2"
+                                            value="{{appClg.c1_coursefees2}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Course Name</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Course Name" name="c1_cn2" value="{{appClg.c1_course2}}">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">GRE Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="GRE score" name="c1_gre2" value="{{appClg.c1_gre2}}" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">TOEFL Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="TOEFL score" name="c1_toefl2" value="{{appClg.c1_toefl2}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">IELTS Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="IELTS score" name="c1_ielts2" value="{{appClg.c1_ielts2}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="button" value="Add Collage" id="c1-add-clg2" onclick="c1AddClg2()">
+
+                        </div>
+                        <!----------------------------country1 clg2 end------------------------------------>
+
+                        <!----------------------------country1 clg3 start------------------------------------>
+                        <div class="col-md-10" id="c1div3" class="add-clg">
+                            <hr>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Collage Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Collage Name" name="c1_clg3"
+                                    value="{{appClg.c1_clg3}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="State Name" name="c1_sn3"
+                                    value="{{appClg.c1_state3}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="City Name" name="c1_c3"
+                                    value="{{appClg.c1_city3}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Application Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Application Fees in ₹" name="c1_af3"
+                                            value="{{appClg.c1_appfees3}}">
+                                    </div>
+                                </div>
+                            
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Course Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Course Fees in ₹" name="c1_cf3"
+                                            value="{{appClg.c1_coursefees3}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Course Name</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1"
+                                        placeholder="Course Name" name="c1_cn3" value="{{appClg.c1_course3}}">
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">GRE Minimum Score</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                                placeholder="GRE score" name="c1_gre3" value="{{appClg.c1_gre3}}"
+                                                min="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">TOEFL Minimum Score</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                                placeholder="TOEFL score" name="c1_toefl3" value="{{appClg.c1_toefl3}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">IELTS Minimum Score</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                                placeholder="IELTS score" name="c1_ielts3" value="{{appClg.c1_ielts3}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!----------------------------country1 clg3 end------------------------------------>
+                        </div>
+                    </div>
+                    <!--------------------------------country2 start--------------------------------------------->
+                    <div id="country2" class="aap_clg_home_content">
+                        <div class="form-group col-md-10" id="c2label1">
+                            <label for="exampleInputEmail1">Country Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Country Name" name="country2" value="{{appClg.country2}}">
+                            <input type="button" value="Add Collage" id="c2-add-country" onclick="c2AddCountry()">
+                        </div>
+
+                        <!---------------------------country2 clg1 start----------------------------------------------->
+                        <div class="col-md-10" id="c2div1" class="add-clg">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Collage Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Collage Name" name="c2_clg1"
+                                    value="{{appClg.c2_clg1}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="State Name" name="c2_sn1"
+                                    value="{{appClg.c2_state1}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="City Name" name="c2_c1"
+                                    value="{{appClg.c2_city1}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Application Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Application Fees in ₹" name="c2_af1"
+                                            value="{{appClg.c2_appfees1}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Course Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Course Fees in ₹" name="c2_cf1"
+                                            value="{{appClg.c2_coursefees1}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Course Name</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Center City" name="c2_cn1" value="{{appClg.c2_course1}}">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">GRE Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="GRE score" name="c2_gre1" value="{{appClg.c2_gre1}}" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">TOEFL Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="TOEFL score" name="c2_toefl1" value="{{appClg.c2_toefl1}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">IELTS Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="IELTS score" name="c2_ielts1" value="{{appClg.c2_ielts1}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="button" value="Add Collage" id="c2-add-clg1" onclick="c2AddClg1()">
+                        </div>
+                        <!----------------------------country2 clg1 end------------------------------------>
+
+                        <!----------------------------country2 clg2 start------------------------------------>
+                        <div class="col-md-10" id="c2div2" class="add-clg">
+                            <hr>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Collage Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Collage Name" name="c2_clg2"
+                                    value="{{appClg.c2_clg2}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="State Name" name="c2_sn2"
+                                    value="{{appClg.c2_state2}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="City Name" name="c2_c2"
+                                    value="{{appClg.c2_city2}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Application Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Application Fees in ₹" name="c2_af2"
+                                            value="{{appClg.c2_appfees2}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Course Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Course Fees in ₹" name="c2_cf2"
+                                            value="{{appClg.c2_coursefees2}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Course Name</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Course Name" name="c2_cn2" value="{{appClg.c2_course2}}">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">GRE Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="GRE score" name="c2_gre2" value="{{appClg.c2_gre2}}" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">TOEFL Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="TOEFL score" name="c2_toefl2" value="{{appClg.c2_toefl2}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">IELTS Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="IELTS score" name="c2_ielts2" value="{{appClg.c2_ielts2}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="button" value="Add Collage" id="c2-add-clg2" onclick="c2AddClg2()">
+                        </div>
+                        <!----------------------------country2 clg2 end------------------------------------>
+
+                        <!----------------------------country2 clg3 start------------------------------------>
+                        <div class="col-md-10" id="c2div3" class="add-clg">
+                            <hr>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Collage Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Center Name" name="c2_clg3"
+                                    value="{{appClg.c2_clg3}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="State Name" name="c2_sn3"
+                                    value="{{appClg.c2_state3}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="City Name" name="c2_c3"
+                                    value="{{appClg.c2_city3}}">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Application Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Application Fees in ₹" name="c2_af3"
+                                            value="{{appClg.c2_appfees3}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Course Fees</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Course Fees in ₹" name="c2_cf3"
+                                            value="{{appClg.c2_coursefees3}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Course Name</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Course Name" name="c2_cn3" value="{{appClg.c2_course3}}">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">GRE Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="GRE score" name="c2_gre3" value="{{appClg.c2_gre3}}" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">TOEFL Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="TOEFL score" name="c2_toefl3" value="{{appClg.c2_toefl3}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">IELTS Minimum Score</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                            placeholder="IELTS score" name="c2_ielts3" value="{{appClg.c2_ielts3}}">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!----------------------------country2 -------------------------------->
+                    </div>
+                </div>
+                <!----------------------------country3 clg3 end------------------------------------>
+
+                <button type="submit" class="btn btn-primary" id="appliedClgSubmit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ----------------------------------country1 start----------------------------------------
+        function c1AddCountry() {
+            document.getElementById("c1div1").style.display = "block";
+            document.getElementById("c1-add-country").style.display = "none";
+            document.getElementById("country2").style.display = "block";
+            document.getElementById("country3").style.display = "none";
+        }
+
+        function c1AddClg1() {
+            document.getElementById("c1-add-clg1").style.display = "none";
+            document.getElementById("c1div2").style.display = "block";
+        }
+
+        function c1AddClg2() {
+            document.getElementById("c1-add-clg2").style.display = "none";
+            document.getElementById("c1div3").style.display = "block";
+        }
+
+        // ---------------------------------------country1 end----------------------------------
+
+        // ---------------------------------------country2 start--------------------------------
+        function c2AddCountry() {
+            document.getElementById("c2div1").style.display = "block";
+            document.getElementById("c2-add-country").style.display = "none";
+            document.getElementById("country3").style.display = "block";
+        }
+        function c2AddClg1() {
+            document.getElementById("c2-add-clg1").style.display = "none";
+            document.getElementById("c2div2").style.display = "block";
+        }
+        function c2AddClg2() {
+            document.getElementById("c2-add-clg2").style.display = "none";
+            document.getElementById("c2div3").style.display = "block";
+        }
+
+    </script>
+
+    <script>
+        var pro, edu, coa, con, res, fli;
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    {% for message in messages %}
+    <script>
+        alert("{{message}}");
+    </script>
+    {% endfor %}
+</body>
+
+</html>

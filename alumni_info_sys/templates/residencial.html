@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Dashboard</title>
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!---------------------------css------------------------------->
+    <link href="{% static 'css/alumni_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page3.css' %}" rel="stylesheet">
+
+
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class="fa fa-graduation-cap"></i>
+                <div class="logo_name">s2a Connect</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li onclick="profile()" id="profile-sidebar">
+                <a href="profile" id="profile-text" class="prolink">
+                    <i class="fa fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li onclick="education()" id="education-sidebar">
+                <a href="education" id="education-text">
+                    <i class="fa fa-university"></i>
+                    <span class="links_name">Education</span>
+                </a>
+                <span class="tooltip">Education</span>
+            </li>
+
+            <li onclick="appliedClg()" id="appliedClg-sidebar">
+                <a href="appliedClg" id="appliedClg-text">
+                    <i class='bx bxs-school'></i>
+                    <span class="links_name">Applied Collage</span>
+                </a>
+                <span class="tooltip">Applied Collage</span>
+            </li>
+
+            <li onclick="coaching()" id="coaching-sidebar">
+                <a href="coaching" id="coaching-text">
+                    <i class='bx bxs-book-open'></i>
+                    <span class="links_name">Coaching</span>
+                </a>
+                <span class="tooltip">Coaching</span>
+            </li>
+            <li onclick="consultancy()" id="consultancy-sidebar">
+                <a href="consultancy" id="consultancy-text">
+                    <i class="fa fa-comments"></i>
+                    <span class="links_name">Consultancy</span>
+                </a>
+                <span class="tooltip">Consultancy</span>
+            </li>
+            <li onclick="residencial()" id="residencial-sidebar">
+                <a href="residencial" id="residencial-text" style="background-color: #fff; color: #000;">
+                    <i class="fa fa-home"></i>
+                    <span class="links_name">Residential</span>
+                </a>
+                <span class="tooltip">Residential</span>
+            </li>
+            <li onclick="flight()" id="flight-sidebar">
+                <a href="flight" id="flight-text">
+                    <i class="bx bxs-plane-take-off icon"></i>
+                    <span class="links_name">Flight</span>
+                </a>
+                <span class="tooltip">Flight</span>
+            </li>
+
+            <li onclick="logout()" id="logout-sidebar" style="margin-top: 200px;">
+                <a href="logout_alumni" id="logout-text">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+        </ul>
+    </div>
+    <div class="home_content">
+        <div class="text">
+            <form class="container" id="residencial" method="post" action="residencial_form">
+                {% csrf_token %}
+                <div class="col-md-10">
+    
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Country</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Country" name="res_country" value="{{res.res_country}}">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">State</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="State" name="res_state" value="{{res.res_state}}">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">City</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="City" name="res_city" value="{{res.res_city}}">
+                    </div>
+    
+    
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Address</label>
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="2"
+                            placeholder="Address" name="res_address" value="">{{res.res_address}}</textarea>
+                        <small id="emailHelp" class="form-text text-muted">Residencial address where you stay for higher
+                            study</small>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Estimated House Rent</label>
+                        <input type="number" max-length="10" class="form-control" id="1exampleInputEmail"
+                            placeholder="House Rent in ₹" name="res_rent" value="{{res.res_rent}}">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Estimated Utility Expenses</label>
+                        <input type="number" max-length="10" class="form-control" id="1exampleInputEmail"
+                            placeholder="Utility Expenses in ₹" name="res_utility_exp" value="{{res.res_utility_exp}}">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Estimated Monthly Expenses</label>
+                        <input type="number" max-length="10" class="form-control" id="1exampleInputEmail"
+                            placeholder="Monthly Expenses in ₹" name="res_monthly_exp" value="{{res.res_monthly_exp}}">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Which useful things should we take with us when we go
+                            for higher studies?</label>
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="2"
+                            placeholder="Useful things" name="useful_things" value="">{{res.useful_things}}</textarea>
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var pro, edu, coa, con, res, fli;
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    {% for message in messages %}
+    <script>
+        alert("{{message}}");
+    </script>
+    {% endfor %}
+</body>
+
+</html>

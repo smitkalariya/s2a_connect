@@ -1,0 +1,46 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div id="newAdmin">
+    <h2 class="hading">Add Admin</h2><br>
+    <form class="container" id="add_admin" method="post" action="add_admin">
+        {% csrf_token %}
+        <div class="col-md-10">
+            <div class="form-group">
+                <label class="labelInput">First Name</label>
+                <input type="text" class="form-control" placeholder="First Name" name="admin_first_name" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" name="admin_last_name" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Email Id</label>
+                <input type="email" class="form-control" placeholder="Email Id" name="admin_email" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Contact no.</label>
+                <input type="number" class="form-control" placeholder="Contact no." name="admin_no" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="add_admin_pass" value="" required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="add_admin_conPass"
+                    value="" required><br>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

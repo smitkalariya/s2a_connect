@@ -1,0 +1,52 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+
+<div class="delete-alumni" id="alumni-details">
+
+    <div id="details" class="row al-project-grid">
+        {% for varPro in pro %}
+        {% for varReg in reg %}
+        {% if forloop.counter == forloop.parentloop.counter %}
+        <div class="al-details col-sm-5">
+            {% if varReg.first_name %}
+            <b>Full name</b> : {{varReg.first_name}} {{varReg.last_name}} <br>
+            {% else %}
+            <b>Full name</b> : None<br>
+            {% endif %}
+
+            {% if varReg.email %}
+            <b>Email</b> : {{varReg.email}}<br>
+            {% else %}
+            <b>Email</b> : None<br>
+            {% endif %}
+
+            {% if varPro.collage_id_id %}
+            <b>Collage Id</b> : {{varPro.collage_id_id}}<br>
+            {% else %}
+            <b>Collage Id</b> : None<br>
+            {% endif %}
+
+            {% if varPro.branch %}
+            <b>Branch</b> : {{varPro.branch}} <br>
+            {% else %}
+            <b>Branch</b> : None<br>
+            {% endif %}
+
+            {% if varPro.passout_year %}
+            <b>Passout year</b> : {{varPro.passout_year}}<br>
+            {% else %}
+            <b>Passout year</b> : None<br>
+            {% endif %}
+
+            <a href="/delete_alumni/{{varPro.collage_id_id}}"><button type="submit" class="btn btn-primary next-btn"
+                    id="delete-alumni-btn">Delete</button></a>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

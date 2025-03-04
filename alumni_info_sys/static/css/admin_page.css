@@ -1,0 +1,87 @@
+nav{
+    background-color: rgb(216, 103, 160);
+    height: 70px;
+}
+input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+.logo i{
+    font-size: 35px;
+    margin-right: 5px;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+nav a .logo{
+    color: black;
+}
+.logo span{
+    font-size: 30px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+nav a{
+    color:black;
+    text-decoration: none;
+}
+nav #navbarNav ul li a{
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 5px;
+    font-size: 20px;
+}
+.navbar-nav{
+    margin-left: auto;
+}
+#navbarNav{
+    margin-right: 20px;
+}
+#adminProfile, #changePassword, #newAdmin, #addAdmin, #addAdminProfile, #addAdminEducation, #addAdminCoaching, #addAdminConsultancy, #addAdminResidencial, #addAdminFlight, #alumni-details{
+    margin-top: 120px;
+}
+.labelInput{
+    margin-bottom: 5px;
+}
+.hading{
+    margin-left: 100px;
+}
+.al-hading{
+    margin-left: -9px;
+}
+
+.next-btn{
+    margin-bottom: 10px;
+}
+
+.al-project-grid{
+    grid-gap: 50px 70px;
+    width: calc(100% + 30px);
+    left: -15px;
+}
+.al-details
+{
+   padding: 20px 20px 20px 20px;
+   border-radius: 10px;
+   box-shadow: 10px 10px 0px 0px rgb(239 112 0 / 10%),20px 16px 50px -20px rgb(32, 162, 243);
+   transition: all .35s cubic-bezier(.14,.51,0,1);
+   width: calc(100% / 4);
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-bottom: 33px;
+}
+
+.delete-alumni{
+    margin-left: 150px;
+}
+#delete-alumni-btn{
+    position: relative;
+    margin-left: 260px;
+    padding: 2px 5px 2px 5px;
+}
+
+.check-box{
+    margin: 20px 10px 10px 0;
+}

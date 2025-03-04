@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<title>log in</title>
+	<link rel="stylesheet" href="{% static 'css/loginform_admin.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div class="hero">
+		<div class="formbox">
+
+			<div class="button-box">
+				<div id="btn"></div>
+				<center><button type="button" id="login1" class="toggle-btn">Log in</button></center>
+
+
+			</div>
+			<form id="login" class="input-group" action="admin_page" method="post">
+				{% csrf_token %}
+				<input type="email" class="input-field" name="admin_email" placeholder="Email Id" >
+				<input type="password" class="input-field" name="admin_password" placeholder="Password">
+				<center><button type="submit" class="submit-btn">Log in</button></center>
+			</form>
+
+		</div>
+	</div>
+
+	{% for message in messages %}
+		<script>
+			alert("{{message}}");
+		</script>
+	{% endfor %}
+
+
+</body>
+
+</html>

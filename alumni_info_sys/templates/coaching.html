@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Dashboard</title>
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!---------------------------css------------------------------->
+    <link href="{% static 'css/alumni_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page3.css' %}" rel="stylesheet">
+
+
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class="fa fa-graduation-cap"></i>
+                <div class="logo_name">s2a Connect</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li onclick="profile()" id="profile-sidebar">
+                <a href="profile" id="profile-text" class="prolink">
+                    <i class="fa fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li onclick="education()" id="education-sidebar">
+                <a href="education" id="education-text">
+                    <i class="fa fa-university"></i>
+                    <span class="links_name">Education</span>
+                </a>
+                <span class="tooltip">Education</span>
+            </li>
+
+            <li onclick="appliedClg()" id="appliedClg-sidebar">
+                <a href="appliedClg" id="appliedClg-text">
+                    <i class='bx bxs-school'></i>
+                    <span class="links_name">Applied Collage</span>
+                </a>
+                <span class="tooltip">Applied Collage</span>
+            </li>
+
+            <li onclick="coaching()" id="coaching-sidebar">
+                <a href="coaching" id="coaching-text" style="background-color: #fff; color: #000;">
+                    <i class='bx bxs-book-open'></i>
+                    <span class="links_name">Coaching</span>
+                </a>
+                <span class="tooltip">Coaching</span>
+            </li>
+            <li onclick="consultancy()" id="consultancy-sidebar">
+                <a href="consultancy" id="consultancy-text">
+                    <i class="fa fa-comments"></i>
+                    <span class="links_name">Consultancy</span>
+                </a>
+                <span class="tooltip">Consultancy</span>
+            </li>
+            <li onclick="residencial()" id="residencial-sidebar">
+                <a href="residencial" id="residencial-text">
+                    <i class="fa fa-home"></i>
+                    <span class="links_name">Residential</span>
+                </a>
+                <span class="tooltip">Residential</span>
+            </li>
+            <li onclick="flight()" id="flight-sidebar">
+                <a href="flight" id="flight-text">
+                    <i class="bx bxs-plane-take-off icon"></i>
+                    <span class="links_name">Flight</span>
+                </a>
+                <span class="tooltip">Flight</span>
+            </li>
+
+            <li onclick="logout()" id="logout-sidebar" style="margin-top: 200px;">
+                <a href="logout_alumni" id="logout-text">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+        </ul>
+    </div>
+    
+    <!-------------------------------Coaching form start----------------------------->
+<div class="home_content">
+    <div class="text">
+        <div id="coaching">
+            <div class="container">
+                <button class="btn btn-primary" onclick="gre()">GRE</button>
+                <button class="btn btn-primary" onclick="toefl()">TOEFL</button>
+                <button class="btn btn-primary" onclick="ielts()">IELTS</button>
+                <button class="btn btn-primary" onclick="other()">Other</button>
+            </div>
+            <br>
+            <!-----------------------------------GRE form start-------------------------------->
+            <form method="post" action="coaching_form">
+                {% csrf_token %}
+                <div id="gre" class="container">
+                    <label class="coaching-label">GRE</label>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Course Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Course Name" name="gre_course_name" value="{{coach.course_name_gre}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center Name</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center Name"
+                                name="gre_center_name" value="{{coach.center_name_gre}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center City</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center City"
+                                name="gre_center_city" value="{{coach.center_city_gre}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Fees</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                placeholder="Course Fees in ₹" name="gre_course_fees" value="{{coach.coaching_fees_gre}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Coaching feedback</label>
+                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="2"
+                                placeholder="Feedback" name="gre_feedback" value="">{{coach.feedback_gre}}</textarea>
+                        </div>
+
+                        <span class="btn btn-primary coaching-gre" onclick="coachingGre()">Next</span>
+
+                    </div>
+                </div>
+                <!--------------------------------------------GRE form end--------------------------------->
+
+                <!-----------------------------------TOEFL form start-------------------------------->
+                <div class="container" id="toefl">
+                    <label class="coaching-label">TOEFL</label>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Course Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Course Name" name="toefl_course_name" value="{{coach.course_name_toefl}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center Name</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center Name"
+                                name="toefl_center_name" value="{{coach.center_name_toefl}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center City</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center City"
+                                name="toefl_center_city" value="{{coach.center_city_toefl}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Fees</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                placeholder="Course Fees ₹" name="toefl_course_fees" value="{{coach.coaching_fees_toefl}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Coaching feedback</label>
+                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="2"
+                                placeholder="Feedback" name="toefl_feedback" value="">{{coach.feedback_toefl}}</textarea>
+                        </div>
+
+                        <span class="btn btn-primary coaching-submit" onclick="coachingToefl()">Next</span>
+
+                    </div>
+                </div>
+                <!--------------------------------------------TOEFL form end--------------------------------->
+
+                <!-----------------------------------IELTS form start-------------------------------->
+                <div class="container" id="ielts">
+                    <label class="coaching-label">IELTS</label>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Course Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Course Name" name="ielts_course_name" value="{{coach.course_name_ielts}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center Name</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center Name"
+                                name="ielts_center_name" value="{{coach.center_name_ielts}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center City</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center City"
+                                name="ielts_center_city" value="{{coach.center_city_ielts}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Fees</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                placeholder="Course Fees ₹" name="ielts_course_fees" value="{{coach.coaching_fees_ielts}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Coaching feedback</label>
+                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="2"
+                                placeholder="Feedback" name="ielts_feedback" value="">{{coach.feedback_ielts}}</textarea>
+                        </div>
+
+                        <span class="btn btn-primary coaching-submit" onclick="coachingIelts()">Next</span>
+
+                    </div>
+                </div>
+                <!--------------------------------------------IELTS form end--------------------------------->
+
+                <!-----------------------------------other form start-------------------------------->
+                <div class="container" id="other">
+                    <label class="coaching-label">Other Course</label>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Course Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Course Name" name="other_course_name" value="{{coach.course_name_other}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center Name</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center Name"
+                                name="other_center_name" value="{{coach.center_name_other}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Center City</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Center City"
+                                name="other_center_city" value="{{coach.center_city_other}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Fees</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                placeholder="Course Fees ₹" name="other_course_fees" value="{{coach.coaching_fees_other}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Coaching feedback</label>
+                            <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="2"
+                                placeholder="Feedback" name="other_feedback" value="">{{coach.feedback_other}}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary coaching-submit">Submit</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--------------------------------------------other form end--------------------------------->
+<!----------------------------------Coaching form end----------------------------->
+<script>
+    function gre() {
+        document.getElementById("gre").style.display = "block";
+        document.getElementById("toefl").style.display = "none";
+        document.getElementById("ielts").style.display = "none";
+        document.getElementById("other").style.display = "none";
+    }
+
+    function toefl() {
+        document.getElementById("gre").style.display = "none";
+        document.getElementById("toefl").style.display = "block";
+        document.getElementById("ielts").style.display = "none";
+        document.getElementById("other").style.display = "none";
+    }
+
+    function ielts() {
+        document.getElementById("gre").style.display = "none";
+        document.getElementById("toefl").style.display = "none";
+        document.getElementById("ielts").style.display = "block";
+        document.getElementById("other").style.display = "none";
+    }
+
+    function other() {
+        document.getElementById("gre").style.display = "none";
+        document.getElementById("toefl").style.display = "none";
+        document.getElementById("ielts").style.display = "none";
+        document.getElementById("other").style.display = "block";
+    }
+
+    function coachingGre() {
+        document.getElementById("toefl").style.display = "block";
+        document.getElementById("gre").style.display = "none";
+    }
+
+    function coachingToefl() {
+        document.getElementById("ielts").style.display = "block";
+        document.getElementById("toefl").style.display = "none";
+    }
+
+    function coachingIelts() {
+        document.getElementById("other").style.display = "block";
+        document.getElementById("ielts").style.display = "none";
+    }
+</script>
+
+    <script>
+        var pro, edu, coa, con, res, fli;
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    {% for message in messages %}
+    <script>
+        alert("{{message}}");
+    </script>
+    {% endfor %}
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="{% static 'css/user_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user_page2.css' %}" rel="stylesheet">
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class="fa fa-graduation-cap"></i>
+                <div class="logo_name">s2a Connect</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li onclick="home()" class="search-sidebar">
+                <a href="all_details" class="search-text">
+                    <i class='bx bxs-home'></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li onclick="search()" class="search-sidebar">
+                <a href="search_alumni" class="search-text">
+                    <i class="fa fa-search"></i>
+                    <span class="links_name">Search</span>
+                </a>
+                <span class="tooltip">Search</span>
+            </li>
+
+            <br><br><br><br><br><br><br><br><br><br><br>
+            <li onclick="logout()" id="logout-sidebar">
+                <a href="logout_student" id="logout-text">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+            <li onclick="deleteaccount()" id="deleteaccount-sidebar">
+                <a href="delete_account_student" id="deleteaccount-text">
+                    <i class='bx bxs-user-x'></i>
+                    <span class="links_name">Delete Account</span>
+                </a>
+                <span class="tooltip">Delete Account</span>
+            </li>
+        </ul>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script>
+        var pro, edu, coa, con, res, fli;
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+
+        /*===========================*/
+
+
+        function home() {
+            document.getElementById("search-sidebar").style.backgroundColor = "#fff";
+            document.getElementById("search-text").style.color = "#000";
+
+            document.getElementById("logout-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("logout-text").style.color = "#fff";
+            document.getElementById("deleteaccount-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("deleteaccount-text").style.color = "#fff";
+
+            document.getElementById("child").style.display = "none";
+        }
+
+        function search() {
+            document.getElementById("search-sidebar").style.backgroundColor = "#fff";
+            document.getElementById("search-text").style.color = "#000";
+
+            document.getElementById("logout-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("logout-text").style.color = "#fff";
+            document.getElementById("deleteaccount-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("deleteaccount-text").style.color = "#fff";
+
+        }
+
+        function logout() {
+
+            document.getElementById("search-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("search-text").style.color = "#fff";
+
+            document.getElementById("logout-sidebar").style.backgroundColor = "#fff";
+            document.getElementById("logout-text").style.color = "#000";
+            document.getElementById("deleteaccount-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("deleteaccount-text").style.color = "#fff";
+
+            document.getElementById("child").style.display = "none";
+            document.getElementById("alumni-details").style.display = "block";
+        }
+
+        function deleteaccount() {
+
+            document.getElementById("search-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("search-text").style.color = "#fff";
+
+            document.getElementById("logout-sidebar").style.backgroundColor = "#11101d";
+            document.getElementById("logout-text").style.color = "#fff";
+            document.getElementById("deleteaccount-sidebar").style.backgroundColor = "#fff";
+            document.getElementById("deleteaccount-text").style.color = "#000";
+
+            document.getElementById("child").style.display = "none";
+            document.getElementById("alumni-details").style.display = "block";
+        }
+
+    </script>
+</body>
+
+</html>

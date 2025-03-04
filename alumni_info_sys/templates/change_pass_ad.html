@@ -1,0 +1,33 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<h1>JUI change pass</h1>
+<div id="changePassword">
+    <h2 class="hading">Change Password</h2><br>
+    <form class="container" id="" method="post" action="update_password">
+        {% csrf_token %}
+        <div class="col-md-10">
+            <div class="form-group">
+                <label class="labelInput">Current Password</label>
+                <input type="password" class="form-control" placeholder="Current Password" name="adminCurrPass" value=""
+                    required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">New Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="adminNewPass" value=""
+                    required>
+            </div><br>
+
+            <div class="form-group">
+                <label class="labelInput">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="adminConPass" value=""
+                    required>
+            </div><br>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

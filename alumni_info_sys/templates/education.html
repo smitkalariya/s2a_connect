@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Dashboard</title>
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!---------------------------css------------------------------->
+    <link href="{% static 'css/alumni_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/alumni_page3.css' %}" rel="stylesheet">
+
+
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class="fa fa-graduation-cap"></i>
+                <div class="logo_name">s2a Connect</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li onclick="profile()" id="profile-sidebar">
+                <a href="profile" id="profile-text" class="prolink">
+                    <i class="fa fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li onclick="education()" id="education-sidebar">
+                <a href="education" id="education-text" style="background-color: #fff; color: #000;">
+                    <i class="fa fa-university"></i>
+                    <span class="links_name">Education</span>
+                </a>
+                <span class="tooltip">Education</span>
+            </li>
+
+            <li onclick="appliedClg()" id="appliedClg-sidebar">
+                <a href="appliedClg" id="appliedClg-text">
+                    <i class='bx bxs-school'></i>
+                    <span class="links_name">Applied Collage</span>
+                </a>
+                <span class="tooltip">Applied Collage</span>
+            </li>
+
+            <li onclick="coaching()" id="coaching-sidebar">
+                <a href="coaching" id="coaching-text">
+                    <i class='bx bxs-book-open'></i>
+                    <span class="links_name">Coaching</span>
+                </a>
+                <span class="tooltip">Coaching</span>
+            </li>
+            <li onclick="consultancy()" id="consultancy-sidebar">
+                <a href="consultancy" id="consultancy-text">
+                    <i class="fa fa-comments"></i>
+                    <span class="links_name">Consultancy</span>
+                </a>
+                <span class="tooltip">Consultancy</span>
+            </li>
+            <li onclick="residencial()" id="residencial-sidebar">
+                <a href="residencial" id="residencial-text">
+                    <i class="fa fa-home"></i>
+                    <span class="links_name">Residential</span>
+                </a>
+                <span class="tooltip">Residential</span>
+            </li>
+            <li onclick="flight()" id="flight-sidebar">
+                <a href="flight" id="flight-text">
+                    <i class="bx bxs-plane-take-off icon"></i>
+                    <span class="links_name">Flight</span>
+                </a>
+                <span class="tooltip">Flight</span>
+            </li>
+
+            <li onclick="logout()" id="logout-sidebar" style="margin-top: 200px;">
+                <a href="logout_alumni" id="logout-text">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+        </ul>
+    </div>
+    <!-------------------Higher education form start------------------->
+<div class="home_content">
+    <div class="text">
+        <form class="container" id="education" method="post" action="education_form">
+            {% csrf_token %}
+
+            <div class="col-md-10">
+                <label for="exampleInputEmail1">Exam Score</label>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">GRE</label>
+                            <input type="number" step="0.01" class="form-control" id="exampleInputPassword1" placeholder="GRE score"
+                                name="gre" value="{{edu.gre}}" min="0">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">TOEFL</label>
+                            <input type="number" step="0.01" class="form-control" id="exampleInputPassword1"
+                                placeholder="TOEFL score" name="toefl" value="{{edu.toefl}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">IELTS</label>
+                            <input type="number" step="0.01" class="form-control" id="exampleInputPassword1"
+                                placeholder="IELTS score" name="ielts" value="{{edu.ielts}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <label for="exampleInputEmail1">Academic CPI</label>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">6<sup>th</sup> sem</label>
+                            <input type="number" step="0.01" class="form-control" id="exampleInputPassword1" placeholder="CPI"
+                                name="cpi6" value="{{edu.cpi6}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">7<sup>th</sup> sem</label>
+                            <input type="number" step="0.01" class="form-control" id="exampleInputPassword1" placeholder="CPI"
+                                name="cpi7" value="{{edu.cpi7}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10" style="margin-bottom: 12px;">
+                <label>Backlog</label> <br>
+                <input type="checkbox" name="backlog6" value="6"> 6 sem &nbsp; &nbsp; &nbsp;
+                <input type="checkbox" name="backlog7" value="7"> 7 sem
+            </div>
+
+            <div class="col-md-10">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Collage</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Collage" name="collage"
+                        value="{{edu.collage}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Country</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Country" name="collage_country" value="{{edu.collage_country}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">City</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="City" name="collage_city" value="{{edu.collage_city}}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Branch</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Branch" name="collage_branch" value="{{edu.collage_branch}}">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-------------------------------Higher education form end----------------------->
+
+    <script>
+        var pro, edu, coa, con, res, fli;
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+        let searchBtn = document.querySelector(".bx-search");
+
+        btn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+        searchBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+        }
+    </script>
+
+    {% for message in messages %}
+    <script>
+        alert("{{message}}");
+    </script>
+    {% endfor %}
+</body>
+
+</html>

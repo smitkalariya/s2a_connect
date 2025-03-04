@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<title>log in</title>
+	<link rel="stylesheet" href="{% static 'css/loginform_alumni.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div class="hero">
+		<div class="closeIcon"><a href="/"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+		<div class="formbox">
+
+			<div class="button-box">
+				<div id="btn"></div>
+				<center><button type="button" id="login1" class="toggle-btn">Log in</button></center>
+
+
+			</div>
+			<form id="login" class="input-group" action="alumni_dashboard" method="post">
+				{% csrf_token %}
+				<input type="text" class="input-field" name="collage_id" placeholder="Collage id" required>
+				<input type="password" class="input-field login-pass" name="password" placeholder="Password" required>
+				<a href="forgot_password_alumni" class="btnsign forgot-pass">Forgot your password?</a>
+				<h5>Don't have an account ? <a href="register_alumni" class="btnsign">Sign up</a></h5>
+				<center><button type="submit" class="submit-btn">Log in</button></center>
+			</form>
+
+		</div>
+	</div>
+
+	{% for message in messages %}
+		<script>
+			confirm("{{message}}");
+		</script>
+	{% endfor %}
+
+</body>
+
+</html>

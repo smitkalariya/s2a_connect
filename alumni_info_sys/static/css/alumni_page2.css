@@ -1,0 +1,26 @@
+#gre{
+    display: none;
+    margin-bottom: 100px;
+}
+#toefl{
+    display: none;
+}
+#ielts{
+    display: none;
+}
+#other{
+    display: none;
+}
+
+.coaching-label{
+    font-weight: bold;
+}
+.coaching-submit{
+    margin-bottom: 20px;
+}
+
+#direct, #indirect{
+    display: none;
+}
+
+

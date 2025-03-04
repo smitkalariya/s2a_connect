@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-------------Boxicons CDN link-------->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="{% static 'css/user_page.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user_page2.css' %}" rel="stylesheet">
+    <!-------------Font Awesome -------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-------------bootstrap------------------------>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <!-------------------Google icon--------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!-------------jquery------------------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: #e4e9f7;" id="applied-clg-body">
+    <div id="child" class="container child-class">
+        <div class="child-cancel">
+            <a href="/all_details" id="more-det" style="color: black; font-size: 20px;"><i class="fa fa-times"
+                    aria-hidden="true" onclick="child()"></i></a>
+        </div>
+
+        <h2>Profile</h2>
+        {% if reg.first_name %}
+        <b>Full name</b> : {{reg.first_name}} {{reg.last_name}}<br>
+        {% else %}
+        <b>Full name</b> : None<br>
+        {% endif %}
+
+        {% if reg.email %}
+        <b>Email</b> : {{reg.email}}<br>
+        {% else %}
+        <b>Email</b> : None<br>
+        {% endif %}
+
+        {% if pro.branch %}
+        <b>Branch</b> : {{pro.branch}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if pro.passout_year %}
+        <b>Passout year</b> : {{pro.passout_year}}<br>
+        {% else %}
+        <b>Passout year</b> : None<br>
+        {% endif %}
+
+        {% if pro.gender %}
+        <b>Gender</b> : {{pro.gender}}<br>
+        {% else %}
+        <b>Gender</b> : None<br>
+        {% endif %}
+
+        {% if pro.permanent_address %}
+        <b>Permanent address</b> : {{pro.permanent_address}}<br>
+        {% else %}
+        <b>Permanent address</b> : None<br>
+        {% endif %}
+
+        {% if pro.home_town %}
+        <b>Home town</b> : {{pro.home_town}}<br><br>
+        {% else %}
+        <b>Home town</b> : None<br><br>
+        {% endif %}
+        <!----------------------------------------------------higher education start------------------------->
+        {% if edu.collage %}
+
+        <h2>Higher Education</h2>
+        {% if edu.gre %}
+        <b>GRE score</b> : {{edu.gre}} &nbsp; &nbsp; &nbsp; &nbsp;
+        {% else %}
+        <b>GRE score</b> : None &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        {% endif %}
+
+        {% if edu.toefl %}
+        <b>TOEFL score</b> : {{edu.toefl}}&nbsp; &nbsp; &nbsp; &nbsp;
+        {% else %}
+        <b>TOEFL score</b> : None &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        {% endif %}
+
+        {% if edu.ielts %}
+        <b>IELTS score</b> : {{edu.ielts}} <br>
+        {% else %}
+        <b>IELTS score</b> : None<br>
+        {% endif %}
+
+        {% if edu.cpi6 %}
+        <b>CPI in Sem 6</b> : {{edu.cpi6}}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        {% else %}
+        <b>CPI in Sem 6</b> : None &nbsp; &nbsp; &nbsp; &nbsp;
+        {% endif %}
+
+        {% if edu.cpi7 %}
+        <b>CPI in Sem 7</b> : {{edu.cpi7}}<br>
+        {% else %}
+        <b>CPI in Sem 7</b> : None<br>
+        {% endif %}
+
+        {% if edu.backlog6 %}
+        <b>Backlog in Sem 6</b> : Yes &nbsp; &nbsp; &nbsp;
+        {% else %}
+        <b>Backlog in Sem 6</b> : No &nbsp; &nbsp; &nbsp;
+        {% endif %}
+
+        {% if edu.backlog7 %}
+        <b>Backlog in Sem 7</b> : Yes<br>
+        {% else %}
+        <b>Backlog in Sem 7</b> : No<br>
+        {% endif %}
+
+        {% if edu.collage %}
+        <b>Collage</b> : {{edu.collage}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if edu.collage_country %}
+        <b>Collage Country</b> : {{edu.collage_country}}<br>
+        {% else %}
+        <b>Collage Country</b> : None<br>
+        {% endif %}
+
+        {% if edu.collage_city %}
+        <b>Collage City</b> : {{edu.collage_city}}<br>
+        {% else %}
+        <b>Collage City</b> : None<br>
+        {% endif %}
+
+        {% if edu.collage_branch %}
+        <b>Branch</b> : {{edu.collage_branch}}<br><br>
+        {% else %}
+        <b>Branch</b> : None<br><br>
+        {% endif %}
+        {% endif %}
+        <!-------------------------------------------------------higher education end-------------------------------------------->
+
+        {% if app.country1 %}
+        <h2>Applied Collage</h2>
+        <!--------------------------------------------------------c1 clg1 start--------------------------------------------------->
+        {% if app.c1_clg1 %}
+        {% if app.country1 %}
+        <b>Country</b> : {{app.country1}}<br>
+        {% else %}
+        <b>Country</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_clg1 %}
+        <b>Collage</b> : {{app.c1_clg1}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_state1 %}
+        <b>State</b> : {{app.c1_state1}}<br>
+        {% else %}
+        <b>State</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_city1 %}
+        <b>City</b> : {{app.c1_city1}}<br>
+        {% else %}
+        <b>City</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_appfees1 %}
+        <b>Application Fees</b> : {{app.c1_appfees1}} ₹<br>
+        {% else %}
+        <b>Application Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_coursefees1 %}
+        <b>Course Fees</b> : {{app.c1_coursefees1}} ₹<br>
+        {% else %}
+        <b>Course Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_course1 %}
+        <b>Branch</b> : {{app.c1_course1}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_gre1 %}
+        <b>GRE minimum Score</b> : {{app.c1_gre1}}<br>
+        {% else %}
+        <b>GRE minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_toefl1 %}
+        <b>TOEFL minimum Score</b> : {{app.c1_toefl1}}<br>
+        {% else %}
+        <b>TOEFL minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_ielts1 %}
+        <b>IELTS minimum Score</b> : {{app.c1_ielts1}}<br><br>
+        {% else %}
+        <b>IELTS minimum Score</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!--------------------------------------------------------c1 clg1 end--------------------------------------------------->
+
+        <!--------------------------------------------------------c1 clg2 start--------------------------------------------------->
+        {% if app.c1_clg2 %}
+        {% if app.country1 %}
+        <b>Country</b> : {{app.country1}}<br>
+        {% else %}
+        <b>Country</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_clg2 %}
+        <b>Collage</b> : {{app.c1_clg2}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_state2 %}
+        <b>State</b> : {{app.c1_state2}}<br>
+        {% else %}
+        <b>State</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_city2 %}
+        <b>City</b> : {{app.c1_city2}}<br>
+        {% else %}
+        <b>City</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_appfees2 %}
+        <b>Application Fees</b> : {{app.c1_appfees2}} ₹<br>
+        {% else %}
+        <b>Application Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_coursefees2 %}
+        <b>Course Fees</b> : {{app.c1_coursefees2}} ₹<br>
+        {% else %}
+        <b>Course Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_course2 %}
+        <b>Branch</b> : {{app.c1_course2}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_gre2 %}
+        <b>GRE minimum Score</b> : {{app.c1_gre2}}<br>
+        {% else %}
+        <b>GRE minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_toefl2 %}
+        <b>TOEFL minimum Score</b> : {{app.c1_toefl2}}<br>
+        {% else %}
+        <b>TOEFL minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_ielts2 %}
+        <b>IELTS minimum Score</b> : {{app.c1_ielts2}}<br><br>
+        {% else %}
+        <b>IELTS minimum Score</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!--------------------------------------------------------c1 clg2 end--------------------------------------------------->
+
+        <!--------------------------------------------------------c1 clg3 start--------------------------------------------------->
+        {% if app.c1_clg3 %}
+        {% if app.country1 %}
+        <b>Country</b> : {{app.country1}}<br>
+        {% else %}
+        <b>Country</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_ielc1_clg3ts2 %}
+        <b>Collage</b> : {{app.c1_clg3}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_state3 %}
+        <b>State</b> : {{app.c1_state3}}<br>
+        {% else %}
+        <b>State</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_city3 %}
+        <b>City</b> : {{app.c1_city3}}<br>
+        {% else %}
+        <b>City</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_appfees3 %}
+        <b>Application Fees</b> : {{app.c1_appfees3}} ₹<br>
+        {% else %}
+        <b>Application Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_coursefees3 %}
+        <b>Course Fees</b> : {{app.c1_coursefees3}} ₹<br>
+        {% else %}
+        <b>Course Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_course3 %}
+        <b>Branch</b> : {{app.c1_course3}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_gre3 %}
+        <b>GRE minimum Score</b> : {{app.c1_gre3}}<br>
+        {% else %}
+        <b>GRE minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_toefl3 %}
+        <b>TOEFL minimum Score</b> : {{app.c1_toefl3}}<br>
+        {% else %}
+        <b>TOEFL minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c1_ielts3 %}
+        <b>IELTS minimum Score</b> : {{app.c1_ielts3}}<br><br>
+        {% else %}
+        <b>IELTS minimum Score</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!--------------------------------------------------------c1 clg3 end--------------------------------------------------->
+
+        <!--------------------------------------------------------c2 clg1 start--------------------------------------------------->
+        {% if app.c2_clg1 %}
+        {% if app.country2 %}
+        <b>Country</b> : {{app.country2}}<br>
+        {% else %}
+        <b>Country</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_clg1 %}
+        <b>Collage</b> : {{app.c2_clg1}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_state1 %}
+        <b>State</b> : {{app.c2_state1}}<br>
+        {% else %}
+        <b>State</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_city1 %}
+        <b>City</b> : {{app.c2_city1}}<br>
+        {% else %}
+        <b>City</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_appfees1 %}
+        <b>Application Fees</b> : {{app.c2_appfees1}} ₹<br>
+        {% else %}
+        <b>Application Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_coursefees1 %}
+        <b>Course Fees</b> : {{app.c2_coursefees1}} ₹<br>
+        {% else %}
+        <b>Course Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_course1 %}
+        <b>Branch</b> : {{app.c2_course1}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_gre1 %}
+        <b>GRE minimum Score</b> : {{app.c2_gre1}}<br>
+        {% else %}
+        <b>GRE minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_toefl1 %}
+        <b>TOEFL minimum Score</b> : {{app.c2_toefl1}}<br>
+        {% else %}
+        <b>TOEFL minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_ielts1 %}
+        <b>IELTS minimum Score</b> : {{app.c2_ielts1}}<br><br>
+        {% else %}
+        <b>IELTS minimum Score</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!--------------------------------------------------------c2 clg1 end--------------------------------------------------->
+
+        <!--------------------------------------------------------c2 clg2 start--------------------------------------------------->
+        {% if app.c2_clg2 %}
+        {% if app.country2 %}
+        <b>Country</b> : {{app.country2}}<br>
+        {% else %}
+        <b>Country</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_clg2 %}
+        <b>Collage</b> : {{app.c2_clg2}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_state2 %}
+        <b>State</b> : {{app.c2_state2}}<br>
+        {% else %}
+        <b>State</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_city2 %}
+        <b>City</b> : {{app.c2_city2}}<br>
+        {% else %}
+        <b>City</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_appfees2 %}
+        <b>Application Fees</b> : {{app.c2_appfees2}} ₹<br>
+        {% else %}
+        <b>Application Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_coursefees2 %}
+        <b>Course Fees</b> : {{app.c2_coursefees2}} ₹<br>
+        {% else %}
+        <b>Course Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_course2 %}
+        <b>Branch</b> : {{app.c2_course2}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_gre2 %}
+        <b>GRE minimum Score</b> : {{app.c2_gre2}}<br>
+        {% else %}
+        <b>GRE minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_toefl2 %}
+        <b>TOEFL minimum Score</b> : {{app.c2_toefl2}}<br>
+        {% else %}
+        <b>TOEFL minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_ielts2 %}
+        <b>IELTS minimum Score</b> : {{app.c2_ielts2}}<br><br>
+        {% else %}
+        <b>IELTS minimum Score</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!---------------------------------------------------------c2 clg2 end--------------------------------------------------->
+
+        <!--------------------------------------------------------c2 clg3 start--------------------------------------------------->
+        {% if app.c2_clg3 %}
+
+        {% if app.country3 %}
+        <b>Country</b> : {{app.country3}}<br>
+        {% else %}
+        <b>Country</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_clg3 %}
+        <b>Collage</b> : {{app.c2_clg3}}<br>
+        {% else %}
+        <b>Collage</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_state3 %}
+        <b>State</b> : {{app.c2_state3}}<br>
+        {% else %}
+        <b>State</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_city3 %}
+        <b>City</b> : {{app.c2_city3}}<br>
+        {% else %}
+        <b>City</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_appfees3 %}
+        <b>Application Fees</b> : {{app.c2_appfees3}} ₹<br>
+        {% else %}
+        <b>Application Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_coursefees3 %}
+        <b>Course Fees</b> : {{app.c2_coursefees3}} ₹<br>
+        {% else %}
+        <b>Course Fees</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_course3 %}
+        <b>Branch</b> : {{app.c2_course3}}<br>
+        {% else %}
+        <b>Branch</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_gre3 %}
+        <b>GRE minimum Score</b> : {{app.c2_gre3}}<br>
+        {% else %}
+        <b>GRE minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_toefl3 %}
+        <b>TOEFL minimum Score</b> : {{app.c2_toefl3}}<br>
+        {% else %}
+        <b>TOEFL minimum Score</b> : None<br>
+        {% endif %}
+
+        {% if app.c2_ielts3 %}
+        <b>IELTS minimum Score</b> : {{app.c2_ielts3}}<br><br>
+        {% else %}
+        <b>IELTS minimum Score</b> : None<br><br>
+        {% endif %}
+        <!-------------------------------------------c2 clg3 end--------------------------------------------------->
+
+        {% endif %}
+        {% endif %}
+        <!-------------------------------------------applied clg start--------------------------------------------->
+
+        <!-------------------------------------------coaching gre start--------------------------------------------->
+        {% if coa.center_name_gre or coa.center_name_toefl or coa.center_name_ielts or coa.center_name_other %}
+        <h2>Coaching</h2>
+        {% endif %}
+
+        {% if coa.center_name_gre %}
+
+        {% if coa.course_name_gre %}
+        <b>Course Name</b> : {{coa.course_name_gre}}<br>
+        {% else %}
+        <b>Course Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_name_gre %}
+        <b>Center Name</b> : {{coa.center_name_gre}}<br>
+        {% else %}
+        <b>Center Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_city_gre %}
+        <b>Center City</b> : {{coa.center_city_gre}}<br>
+        {% else %}
+        <b>Center City</b> : None<br>
+        {% endif %}
+
+        {% if coa.coaching_fees_gre %}
+        <b>Coaching Fees</b> : {{coa.coaching_fees_gre}} ₹<br>
+        {% else %}
+        <b>Coaching Fees</b> : None<br>
+        {% endif %}
+
+        {% if coa.feedback_gre %}
+        <b>Feedback</b> : {{coa.feedback_gre}}<br><br>
+        {% else %}
+        <b>Feedback</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!-------------------------------------------coaching gre end--------------------------------------------->
+
+        <!-------------------------------------------coaching toefl start--------------------------------------------->
+        {% if coa.center_name_toefl %}
+
+        {% if coa.course_name_toefl %}
+        <b>Course Name</b> : {{coa.course_name_toefl}}<br>
+        {% else %}
+        <b>Course Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_name_toefl %}
+        <b>Center Name</b> : {{coa.center_name_toefl}}<br>
+        {% else %}
+        <b>Center Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_city_toefl %}
+        <b>Center City</b> : {{coa.center_city_toefl}}<br>
+        {% else %}
+        <b>Center City</b> : None<br>
+        {% endif %}
+
+        {% if coa.coaching_fees_toefl %}
+        <b>Coaching Fees</b> : {{coa.coaching_fees_toefl}} ₹<br>
+        {% else %}
+        <b>Coaching Fees</b> : None<br>
+        {% endif %}
+
+        {% if coa.feedback_toefl %}
+        <b>Feedback</b> : {{coa.feedback_toefl}}<br><br>
+        {% else %}
+        <b>Feedback</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!-------------------------------------------coaching toefl end--------------------------------------------->
+
+        <!-------------------------------------------coaching ielts start-------------------------------------------->
+        {% if coa.center_name_ielts %}
+
+        {% if coa.course_name_ielts %}
+        <b>Course Name</b> : {{coa.course_name_ielts}}<br>
+        {% else %}
+        <b>Course Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_name_ielts %}
+        <b>Center Name</b> : {{coa.center_name_ielts}}<br>
+        {% else %}
+        <b>Center Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_city_ielts %}
+        <b>Center City</b> : {{coa.center_city_ielts}}<br>
+        {% else %}
+        <b>Center City</b> : None<br>
+        {% endif %}
+
+        {% if coa.coaching_fees_ielts %}
+        <b>Coaching Fees</b> : {{coa.coaching_fees_ielts}} ₹<br>
+        {% else %}
+        <b>Coaching Fees</b> : None<br>
+        {% endif %}
+
+        {% if coa.feedback_ielts %}
+        <b>Feedback</b> : {{coa.feedback_ielts}}<br><br>
+        {% else %}
+        <b>Feedback</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!-------------------------------------------coaching ielts end--------------------------------------------->
+
+        <!-------------------------------------------------coaching other start------------------------------------>
+        {% if coa.center_name_other %}
+
+        {% if coa.course_name_other %}
+        <b>Course Name</b> : {{coa.course_name_other}}<br>
+        {% else %}
+        <b>Course Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_name_other %}
+        <b>Center Name</b> : {{coa.center_name_other}}<br>
+        {% else %}
+        <b>Center Name</b> : None<br>
+        {% endif %}
+
+        {% if coa.center_city_other %}
+        <b>Center City</b> : {{coa.center_city_other}}<br>
+        {% else %}
+        <b>Coaching City</b> : None<br>
+        {% endif %}
+
+        {% if coa.coaching_fees_other %}
+        <b>Coaching Fees</b> : {{coa.coaching_fees_other}} ₹<br>
+        {% else %}
+        <b>Coaching Fees</b> : None<br>
+        {% endif %}
+
+        {% if coa.feedback_other %}
+        <b>Feedback</b> : {{coa.feedback_other}}<br><br>
+        {% else %}
+        <b>Feedback</b> : None<br><br>
+        {% endif %}
+
+        {% endif %}
+        <!-------------------------------------------coaching other end--------------------------------------------->
+
+        <!------------------------------------consultancy start---------------------------------------------->
+        {% if con.service_name %}
+        <h2>Consultancy</h2>
+        {% if con.service_name %}
+        <b>Service Name</b> : {{con.service_name}}<br>
+        {% else %}
+        <b>Service Name</b> : None<br>
+        {% endif %}
+
+        {% if con.service_city %}
+        <b>Service City</b> : {{con.service_city}}<br>
+        {% else %}
+        <b>Service City</b> : None<br>
+        {% endif %}
+
+        {% if con.service_address %}
+        <b>Service Address</b> : {{con.service_address}}<br>
+        {% else %}
+        <b>Service Address</b> : None<br>
+        {% endif %}
+
+        {% if con.service_number %}
+        <b>Service Number</b> : {{con.service_number}}<br>
+        {% else %}
+        <b>Service Number</b> : None<br>
+        {% endif %}
+
+        {% if con.service_fees %}
+        <b>Service Fees</b> : {{con.service_fees}} ₹<br>
+        {% else %}
+        <b>Service Fees</b> : None<br>
+        {% endif %}
+
+        {% if con.consulting_countries %}
+        <b>Consulting for which countries?</b> : {{con.consulting_countries}}<br><br>
+        {% else %}
+        <b>Consulting for which countries?</b> : None<br><br>
+        {% endif %}
+        {% endif %}
+        <!------------------------------------consultancy end-------------------------------------------->
+
+        <!-------------------------------------------residential start------------------------------------------->
+        {% if res.res_country %}
+        <h2>Residential</h2>
+        {% if res.res_country %}
+        <b>Residential Country</b> : {{res.res_country}}<br>
+        {% else %}
+        <b>Residential Country</b> : None<br>
+        {% endif %}
+
+        {% if res.res_state %}
+        <b>Residential State</b> : {{res.res_state}}<br>
+        {% else %}
+        <b>Residential State</b> : None<br>
+        {% endif %}
+
+        {% if res.res_city %}
+        <b>Residential City</b> : {{res.res_city}}<br>
+        {% else %}
+        <b>Residential City</b> : None<br>
+        {% endif %}
+
+        {% if res.res_address %}
+        <b>Residential Address</b> : {{res.res_address}}<br>
+        {% else %}
+        <b>Residential Address</b> : None<br>
+        {% endif %}
+
+        {% if res.res_rent %}
+        <b>Estimated House Rent</b> : {{res.res_rent}} ₹<br>
+        {% else %}
+        <b>Estimated House Rent</b> : None<br>
+        {% endif %}
+
+        {% if res.res_utility_exp %}
+        <b>Estimated Utility Expenses</b> : {{res.res_utility_exp}} ₹<br>
+        {% else %}
+        <b>Estimated Utility Expenses</b> : None<br>
+        {% endif %}
+
+        {% if res.res_monthly_exp %}
+        <b>Estimated Monthly Expenses</b> : {{res.res_monthly_exp}} ₹<br>
+        {% else %}
+        <b>Estimated Monthly Expenses</b> : None<br>
+        {% endif %}
+
+        {% if res.useful_things %}
+        <b>Useful Things to Take With us</b> : {{res.useful_things}}<br><br>
+        {% else %}
+        <b>Useful Things to Take With us</b> : None<br><br>
+        {% endif %}
+        {% endif %}
+        <!--------------------------------------------residential end--------------------------------------------->
+
+        <!---------------------------------------------flight start----------------------------------------------->
+        {% if fli.flight_name %}
+        <h2>Flight</h2>
+        {% if fli.flight_name %}
+        <b>Flight Name</b> : {{fli.flight_name}}<br>
+        {% else %}
+        <b>Flight Name</b> : None<br>
+        {% endif %}
+
+        {% if fli.site_name %}
+        <b>Booking Site Name</b> : {{fli.site_name}}<br>
+        {% else %}
+        <b>Booking Site Name</b> : None<br>
+        {% endif %}
+
+        {% if fli.airport_exp %}
+        <b>Airport Expenses</b> : {{fli.airport_exp}} ₹<br>
+        {% else %}
+        <b>Airport Expenses</b> : None<br>
+        {% endif %}
+
+        {% if fli.from_where %}
+        <b>From Where?</b> : {{fli.from_where}}<br>
+        {% else %}
+        <b>From Where?</b> : None<br>
+        {% endif %}
+
+        {% if fli.to_where %}
+        <b>To Where?</b> : {{fli.to_where}}<br>
+        {% else %}
+        <b>To Where?</b> : None<br>
+        {% endif %}
+
+        {% if fli.leave_over_place %}
+        <b>Leave Over Place</b> : {{fli.leave_over_place}}<br>
+        {% else %}
+        <b>Leave Over Place</b> : None<br>
+        {% endif %}
+
+        {% if fli.leave_over_time %}
+        <b>Leave Over Time</b> : {{fli.leave_over_time}}<br>
+        {% else %}
+        <b>Leave Over Time</b> : None<br>
+        {% endif %}
+        {% endif %}
+        <!---------------------------------------------------flight end---------------------------------------->
+
+    </div>
+</body>
+
+</html>
